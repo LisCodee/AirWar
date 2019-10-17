@@ -38,6 +38,7 @@ public class ZombieSpawn : MonoBehaviour
         control.wayline = line;
         line.IsUsable = false;
         spawnedCount++;
+        go.GetComponent<ZombieStatus>().spawn = this;
     }
     private WayLine1[] lines;
     private void Start()

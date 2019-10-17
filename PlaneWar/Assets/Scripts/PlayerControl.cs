@@ -5,37 +5,49 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     private Animation [] girl_anim;
-    private Gun gun;
-    public GameObject firePoint;
+    private Gun gun;                            //获取枪
+    public GameObject firePoint;        //获取开火点
+    private Animator anim;                  //获取动画对象
     // Start is called before the first frame update
     void Start()
     {
+        anim = this.GetComponent<Animator>();
         firePoint = GameObject.FindGameObjectWithTag("FirePoint");
         girl_anim = this.GetComponentsInChildren<Animation>();
-        Debug.Log(girl_anim.Length);
+        //Debug.Log(girl_anim.Length);
         gun = this.GetComponentInChildren<Gun>();
     }
-    public float speed = 10;
-    public float roundSpeed = 5;
+    public float speed = 5;
+    public float roundSpeed = 30;
     // Update is called once per frame
     void Update()
     {
         Movement();
         Fire();
     }
+    /// <summary>
+    /// 移动
+    /// </summary>
     private void Movement()
     {
+        
         if (Input.GetKey(KeyCode.W))
         {
             this.transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            girl_anim[0].Play();
-            girl_anim[1].Play();
+            anim.SetBool("run", true);
         }
         if (Input.GetKey(KeyCode.S))
         {
             this.transform.Translate(-Vector3.forward * speed * Time.deltaTime);
-            girl_anim[0].Play();
-            girl_anim[1].Play();
+            anim.SetBool("run", true);
+        }
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            anim.SetBool("run", false);
+        }
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            anim.SetBool("run", false);
         }
         if (Input.GetKey(KeyCode.A))
         {
@@ -46,7 +58,11 @@ public class PlayerControl : MonoBehaviour
         {
             this.transform.Rotate(0, roundSpeed * Time.deltaTime, 0);
         }
+        
     }
+    /// <summary>
+    /// 开火、换弹
+    /// </summary>
     private void Fire()
     {
         if (Input.GetMouseButtonDown(0))

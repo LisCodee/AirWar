@@ -18,6 +18,7 @@ public class WayLine
 
     //默认 IsUsable 为 false  
     //       Points  为 null
+
     public WayLine(int pointCount)
     {
         this.Points = new Vector3[pointCount];

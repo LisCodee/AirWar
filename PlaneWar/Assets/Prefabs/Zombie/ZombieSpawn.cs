@@ -25,6 +25,11 @@ public class ZombieSpawn : MonoBehaviour
     public float maxDelytime = 5;
     public void GenerateZombie()
     {
+        spawnedCount++;
+        if(spawnedCount > maxCount)
+        {
+            return;
+        }
         //延时加载
         Invoke("CreateZombie", Random.Range(1,maxDelytime));
     }
@@ -37,17 +42,17 @@ public class ZombieSpawn : MonoBehaviour
         ZombieControl control = go.GetComponent<ZombieControl>();
         control.wayline = line;
         line.IsUsable = false;
-        spawnedCount++;
+        
         go.GetComponent<ZombieStatus>().spawn = this;
     }
     private WayLine1[] lines;
     private void Start()
     {
-        CreateZombie();
-    }
-    private void Awake()
-    {
-        CaculateWayLines();     //预加载路线
+        CaculateWayLines();
+        for(int i = 0; i < maxCount; i++)
+        {
+            CreateZombie();
+        }
     }
     /// <summary>
     /// 加载所有路线，获取路点坐标
@@ -55,15 +60,16 @@ public class ZombieSpawn : MonoBehaviour
     private void CaculateWayLines()
     {
         //加载路线信息
-        lines = new WayLine1[this.transform.childCount];
+        lines = new WayLine1[transform.childCount];
         for(int i = 0; i < lines.Length; i++)
         {
-            Transform tf = this.transform.GetChild(i);
+            Transform tf = transform.GetChild(i);
             lines[i] = new WayLine1(tf.childCount);
+            //lines[i].IsUsable = true
             //lines[i].Points = new Vector3[tf.childCount];
-            for(int point_index = 0;point_index < lines[i].Points.Length; point_index++)
+            for(int point_index = 0;point_index < tf.childCount; point_index++)
             {
-                lines[i].Points[point_index] = this.transform.GetChild(i).GetChild(point_index).position;
+                lines[i].Points[point_index] = tf.GetChild(point_index).position;
             }
         }
     }

@@ -30,7 +30,7 @@ public class ZombieStatus : MonoBehaviour
     public float deathDelay = 10;
 
     //敌人生成器引用  敌人创建时由生成器传递
-    //public EnemySpawn spawn;
+    public ZombieSpawn spawn;
     /// <summary>
     /// 死亡
     /// </summary>
@@ -47,9 +47,9 @@ public class ZombieStatus : MonoBehaviour
         GetComponent<ZombieAI>().state = ZombieAI.State.Death;
 
         //修改路线状态
-        //GetComponent<EnemyMotor>().wayline.IsUsable = true;
+        GetComponent<ZombieControl>().wayline.IsUsable = true;
 
         //需要再生成一个敌人
-        //spawn.GenerateEnemy();
+        spawn.GenerateZombie();
     }
 }

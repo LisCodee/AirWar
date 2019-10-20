@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        Movement1();
         Fire();
     }
     /// <summary>
@@ -59,6 +59,14 @@ public class PlayerControl : MonoBehaviour
             this.transform.Rotate(0, roundSpeed * Time.deltaTime, 0);
         }
         
+    }
+    private void Movement1()
+    {
+        float hor = Input.GetAxis("Horizontal");
+        float ver = Input.GetAxis("Vertical");
+        hor *= speed * Time.deltaTime;
+        ver *= speed * Time.deltaTime;
+        this.transform.Translate(hor, 0, ver);
     }
     /// <summary>
     /// 开火、换弹

@@ -10,8 +10,8 @@ public class PlayerStatus : MonoBehaviour
         Instance = this;
     }
 
-    public float HP;
-    public float maxHP;
+    public float HP = 1000;
+    public float maxHP = 1000;
 
     //玩家头部位置
     public Transform headTF;
@@ -19,5 +19,14 @@ public class PlayerStatus : MonoBehaviour
     public void Damage(float amount)
     {
         HP -= amount;
+        Debug.Log("受伤");
+        if(HP <= 0)
+        {
+            Death();
+        }
+    }
+    public void Death()
+    {
+        print("玩家死亡");
     }
 }

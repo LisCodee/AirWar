@@ -77,7 +77,7 @@ public class ZombieAI : MonoBehaviour
         if (!anim.GetBool("hit") && !anim.GetBool("run"))
         {
             //如果其他动画没有播放  再  播放闲置动画
-            anim.SetBool("hit", false);
+            anim.SetBool("idel", false);
         }
     }
     /// <summary>

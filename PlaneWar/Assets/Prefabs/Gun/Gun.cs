@@ -6,9 +6,9 @@ using System.Collections;
 /// </summary>
 public class Gun : MonoBehaviour
 {
-    public float atk;
+    public float atk = 30;
 
-    public float atkDistance=200;
+    public float atkDistance=2000;
 
     /// <summary>
     /// 子弹预制件
@@ -19,12 +19,21 @@ public class Gun : MonoBehaviour
     /// 开火点
     /// </summary>
     public Transform firePoint;
-
+    /// <summary>
+    /// 开火声音资源
+    /// </summary>
     private AudioSource source;
+    /// <summary>
+    /// 枪动画
+    /// </summary>
     private GunAnimation anim;
+    /// <summary>
+    /// 枪口火光特效
+    /// </summary>
     private MuzzleFlash flash;
-    private void Start()
+   protected virtual void Start()
     {
+        atk = 50;
         ammoCapacity = 300;
         currentAmmoBullets = 40;
         remainBullets = 300;
@@ -39,7 +48,7 @@ public class Gun : MonoBehaviour
     public bool Firing(Vector3 dir)
     {
         //判定能否发射子弹(弹匣子弹数     攻击动画是否播放)
-        if (!Ready()) return false;
+        if (!Ready()) return false; 
 
         //如果可以发射子弹
         //1.创建子弹（创建谁？在哪？旋转？）
@@ -50,11 +59,10 @@ public class Gun : MonoBehaviour
         //2.播放声音  
         source.Play();
         //3.播放动画
-        anim.Play(anim.fireAnimName);           //因为录制的动画片段很短，所以使用PlayQueued播放
-        //anim.PlayQueued(anim.fireAnimName);
+        anim.PlayQueued(anim.fireAnimName);           //因为录制的动画片段很短，所以使用PlayQueued播放
          
         //4.显示火花
-        //flash.DisplayFlash();
+        flash.DisplayFlash();
 
         return true;
     }
@@ -66,12 +74,13 @@ public class Gun : MonoBehaviour
     //准备发射子弹
     private bool Ready()
     {
+        //没有子弹或者正在播放其他动画
         if (currentAmmoBullets <= 0 || anim.IsPlaying(anim.updateAnimName)) return false;
 
         currentAmmoBullets--;
 
-        //如果弹匣没有子弹  则 播放缺少子弹动画
-        if (currentAmmoBullets == 0)
+        //如果弹匣没有子弹  则播放缺少子弹动画
+        if (currentAmmoBullets == 0) 
             anim.PlayQueued(anim.lackBulletAnimName);
 
         return true;

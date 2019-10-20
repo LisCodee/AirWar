@@ -35,6 +35,10 @@ public class MuzzleFlash : MonoBehaviour
         {
             flashGo.SetActive(false);
         }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            DisplayFlash(); 
+        }
     }
 
 

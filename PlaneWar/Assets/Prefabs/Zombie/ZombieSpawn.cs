@@ -36,7 +36,7 @@ public class ZombieSpawn : MonoBehaviour
     private void CreateZombie()
     {
         WayLine1[] usableWayLines = SelectUsableLine();             //所有可用路线
-        Debug.Log("可用路线：" + usableWayLines.Length + usableWayLines[0]);
+        //Debug.Log("可用路线：" + usableWayLines.Length + usableWayLines[0]);
         WayLine1 line = usableWayLines[Random.Range(0, usableWayLines.Length)];     //随机选取一条路线
         GameObject go = Instantiate(zombieType[Random.Range(0, zombieType.Length)], line.Points[0], Quaternion.identity);       //随机创建一种丧尸  
         ZombieControl control = go.GetComponent<ZombieControl>();

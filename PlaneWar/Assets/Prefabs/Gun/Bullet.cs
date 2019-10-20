@@ -6,15 +6,24 @@ using System.Collections;
 /// </summary>
 public class Bullet : MonoBehaviour
 {
+    /// <summary>
+    /// 攻击力
+    /// </summary>
     [HideInInspector]
     public float atk;
-
+    /// <summary>
+    /// 射线out对象
+    /// </summary>
     [HideInInspector]
     public RaycastHit hit;
-
+    /// <summary>
+    /// 攻击有效距离
+    /// </summary>
     [HideInInspector]
     public float atkDistance;
-
+    /// <summary>
+    /// 射线层级
+    /// </summary>
     public LayerMask layer;
 
     public void Init(float atk,float distance)
@@ -29,6 +38,7 @@ public class Bullet : MonoBehaviour
     //通过射线计算击中物体
     private void CalculateTargetPoint()
     { 
+
         if (Physics.Raycast(transform.position, transform.forward, out hit, atkDistance, layer))
         {
             targetPos = hit.point;
@@ -36,7 +46,7 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            targetPos = transform.TransformPoint(0, 0, atkDistance);
+            targetPos = this.transform.position + this.transform.forward * atkDistance;
             Debug.Log("没有击中");
         } 
     }
@@ -47,21 +57,23 @@ public class Bullet : MonoBehaviour
         if ((transform.position - targetPos).sqrMagnitude < 0.1f)
         { //到达目标点
             //销毁子弹
-            Destroy(gameObject);
-
+            Destroy(this.gameObject);
             //生成特效
             GenerateContactEffect();
         }
     }
-
+    /// <summary>
+    /// 子弹飞行速度
+    /// </summary>
+    public float moveSpeed = 100;
     private void Movement()
     { 
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
+        this.transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeed);
     }
     //生成接触特效
     private void GenerateContactEffect()
     { // Resources/ContactEffects/xxxx
-        //根据 受击物体标签（ hit.collider.tag） 创建相应特效
+        //根据  受击物体标签（ hit.collider.tag） 创建相应特效
         //规定：读取的资源必须放置在 Resources 文件夹内
         //GameObject go = Resources.Load<GameObject>("ContactEffects/xx");
 
@@ -76,6 +88,4 @@ public class Bullet : MonoBehaviour
             Instantiate(go, targetPos + hit.normal *0.01f, Quaternion.LookRotation(hit.normal));
         }
     }
-
-    public float moveSpeed;
 }

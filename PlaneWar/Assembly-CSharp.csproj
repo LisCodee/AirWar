@@ -100,12 +100,16 @@
     <Compile Include="Assets\Effects\JMO Assets\WarFX\Scripts\WFX_ParticleMeshBillboard.cs" />
     <Compile Include="Assets\Effects\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\MapTerrain\Standard Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Prefabs\Gun\AutoGun.cs" />
     <Compile Include="Assets\Prefabs\Gun\Bullet.cs" />
+    <Compile Include="Assets\Prefabs\Gun\CameraRoation.cs" />
     <Compile Include="Assets\Prefabs\Gun\Gun.cs" />
     <Compile Include="Assets\Prefabs\Gun\GunAnimation.cs" />
     <Compile Include="Assets\Prefabs\Gun\MuzzleFlash.cs" />
     <Compile Include="Assets\Prefabs\Gun\PlayerBullet.cs" />
+    <Compile Include="Assets\Prefabs\Gun\PlayerControl.cs" />
     <Compile Include="Assets\Prefabs\Gun\PlayerStatus.cs" />
+    <Compile Include="Assets\Prefabs\Gun\SingleGun.cs" />
     <Compile Include="Assets\Prefabs\Gun\WeaponFlicker.cs" />
     <Compile Include="Assets\Prefabs\Zombie\WayLine1.cs" />
     <Compile Include="Assets\Prefabs\Zombie\ZombieAI.cs" />
@@ -121,7 +125,6 @@
     <Compile Include="Assets\Scripts\Enemy\SpawnSystem.cs" />
     <Compile Include="Assets\Scripts\Enemy\SpawnTrigger.cs" />
     <Compile Include="Assets\Scripts\Enemy\WayLine.cs" />
-    <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\PlayerStatusInfo.cs" />
     <Compile Include="Assets\Scripts\Weapon\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\Weapon\PlayerSingleGunControl.cs" />

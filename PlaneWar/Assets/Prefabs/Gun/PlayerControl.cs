@@ -22,7 +22,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement1();
+        Movement();
         Fire();
     }
     /// <summary>
@@ -77,11 +77,20 @@ public class PlayerControl : MonoBehaviour
         {
             Transform fp = firePoint.transform;
             gun.Firing(fp.forward);
-            Debug.Log("开火");
         }
         if (Input.GetMouseButtonDown(1))
         {
             gun.UpdateAmmo();
         }
+    }
+    public Texture texture;
+    private void OnGUI()
+    {
+        Rect rect = new Rect(Input.mousePosition.x - (texture.width >> 1),
+            Screen.height - Input.mousePosition.y - (texture.height >> 1),
+            texture.width, texture.height);
+
+        GUI.DrawTexture(rect, texture);
+
     }
 }

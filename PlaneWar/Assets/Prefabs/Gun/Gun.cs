@@ -34,11 +34,12 @@ public class Gun : MonoBehaviour
    protected virtual void Start()
     {
         atk = 50;
-        ammoCapacity = 300;
-        currentAmmoBullets = 40;
+        ammoCapacity = 30;
+        currentAmmoBullets = 30;
         remainBullets = 300;
         source = GetComponent<AudioSource>();
         anim = GetComponent<GunAnimation>();
+        Debug.Log(anim);
         flash = firePoint.GetComponent<MuzzleFlash>();
     }
      
@@ -75,7 +76,7 @@ public class Gun : MonoBehaviour
     private bool Ready()
     {
         //没有子弹或者正在播放其他动画
-        if (currentAmmoBullets <= 0 || anim.IsPlaying(anim.updateAnimName)) return false;
+        if (currentAmmoBullets <= 0 /*|| anim.IsPlaying(anim.updateAnimName)*/) return false;
 
         currentAmmoBullets--;
 

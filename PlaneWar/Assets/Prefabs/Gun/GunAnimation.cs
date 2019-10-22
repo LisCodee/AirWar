@@ -24,6 +24,7 @@ public class GunAnimation : MonoBehaviour
     //建议：提取EnemyAnimation 与 当前类的共有行为。
     //播放动画
     private Animation anim;
+     
     private void Start()
     {
         //查找动画组件

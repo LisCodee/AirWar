@@ -8,6 +8,9 @@ TagManager:
   - FirePoint
   - Enviroment
   - Zombie
+  - Soil
+  - Col_body
+  - Col_head
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
+  - Environment
+  - Zombie
   - 
   - 
   - 

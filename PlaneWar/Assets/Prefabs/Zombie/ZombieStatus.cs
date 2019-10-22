@@ -7,11 +7,11 @@ public class ZombieStatus : MonoBehaviour
     /// <summary>
     /// 当前血量
     /// </summary>
-    public float currentHP;
+    public float currentHP = 100;
     /// <summary>
     /// 最大血量
     /// </summary>
-    public float maxHP;
+    public float maxHP = 100;
 
     public void Damage(float amount)
     {

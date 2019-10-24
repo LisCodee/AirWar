@@ -31,12 +31,12 @@ public class FPSCamera : MonoBehaviour
         rotPlayer.y += mouseX;
 
         //万向节死锁
-        if(mouseX > 90)
+        if(mouseX >= 89)
         {
-            rot_playerArms.x = 90;
-        }else if(mouseX < -90)
+            rot_playerArms.x = 89;
+        }else if(mouseX <= -90)
         {
-            rot_playerArms.x = -90;
+            rot_playerArms.x = 269;
         }
         playerarms.rotation = Quaternion.Euler(rot_playerArms);
         player.rotation = Quaternion.Euler(rotPlayer);

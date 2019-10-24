@@ -26,26 +26,46 @@ public class ZombieAI : MonoBehaviour
     }
     private Animator anim;              //加载丧尸动画
     private ZombieControl control;  //加载丧尸马达
+    private GameObject player;      //加载角色信息
+    public float distance = 3f;              //攻击范围
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player"); 
         anim = GetComponent<Animator>();
         control = GetComponent<ZombieControl>();
     }
     public State state = State.Pathfinding;
 
+    /// <summary>
+    /// 判断玩家是否进入攻击范围
+    /// </summary>
+    void Change()
+    {
+        Vector3 zombie = this.transform.position;
+        Vector3 play = player.transform.position;
+        //Debug.Log(Vector3.Distance(zombie, play));
+        if(Vector3.Distance(zombie , play) < distance){
+            state = State.Attack;
+            Debug.Log("攻击了");
+        }
+        else
+        {
+            state = State.Pathfinding;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+        Change();
         switch (state)
         {
             case State.Pathfinding:
                 Pathfinding();
-         
                 break;
             case State.Attack:
                 Attack();
-                
                 break;
         }
     }

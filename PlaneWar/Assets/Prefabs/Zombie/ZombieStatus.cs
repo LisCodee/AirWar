@@ -13,21 +13,26 @@ public class ZombieStatus : MonoBehaviour
     /// </summary>
     public float maxHP = 100;
 
+    public Animator anim;
     public void Damage(float amount)
     {
         //如果敌人已经死亡 则退出(防止虐尸)
         //if (currentHP <= 0) return;
-
+        anim = this.GetComponent<Animator>();
+        anim.SetBool("hit", true);
         currentHP -= amount;
-
+        Invoke("SetFalse", 0.3f);
         if (currentHP <= 0)
             Death();
     }
-
+    void SetFalse()
+    {
+        anim.SetBool("hit", false);
+    }
     /// <summary>
     /// 死亡延迟时间
     /// </summary>
-    public float deathDelay = 10;
+    public float deathDelay = 3;
 
     //敌人生成器引用  敌人创建时由生成器传递
     public ZombieSpawn spawn;

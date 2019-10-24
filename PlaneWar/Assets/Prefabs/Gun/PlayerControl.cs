@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
     private Gun gun;                            //获取枪
     public GameObject firePoint;        //获取开火点
     private Animator anim;                  //获取动画对象
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,14 @@ public class PlayerControl : MonoBehaviour
     {
         Movement();
         Fire();
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("碰撞发生" + other.tag);
+        if(other.tag == "Zombie")
+        {
+            this.GetComponent<PlayerStatus>().Damage(10);
+        }
     }
     /// <summary>
     /// 移动

@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ffea829510a7147abd830e16373476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0.3
   state: 2
   atkInterval: 3
   delay: 0.3
@@ -177,7 +178,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 100
   maxHP: 100
-  deathDelay: 10
+  anim: {fileID: 0}
+  deathDelay: 3
   spawn: {fileID: 0}
 --- !u!1 &6277817195474545761
 GameObject:

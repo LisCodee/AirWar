@@ -43,7 +43,10 @@ public class ZombieControl : MonoBehaviour
 
         //如果到达目标点
         if (Vector3.Distance(transform.position, wayline.Points[currentIndex]) <= 0.2f)
+        {
             currentIndex++;
+            currentIndex %= wayline.Points.Length-1;
+        }
 
         return true;//返回true 表示 可以继续寻路
     }
